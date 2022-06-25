@@ -4,7 +4,7 @@
 
 用本地logseq打开这个仓库，设置git autocommit
 ## Push
-在设置玩git autocommit后，logseq会自动进行`git add && git commit -m "Logseq auto commit"`
+在设置git autocommit后，logseq会自动进行`git add && git commit -m "Logseq auto commit"`
 进入仓库目录进行`git push`即可触发Github Action, 整个CI大概需要7-10分钟，[dbgroup.club](https://dbgroup.club)会自动完成更新
 **CI只构建了master分支，为避免冲突，建议每次推送前先拉取**
 
