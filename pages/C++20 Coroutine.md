@@ -1183,38 +1183,4 @@ C++20 的协程设计为无栈协程，相对于有栈协程，省掉了上下�
   2. 通过 Awaiter.await_ready()方法判断是否需要挂起，若为 true 则无需挂起
   3. 判断 Awaiter.await_suspend()的返回值类型：
 	- void，无返回值，直接挂起返回 caller
-	- bool，若为 true，则返挂起返回 caller，否则不挂起，直接 resume
-	- `coroutine_handle<>`, 则挂起并将控制权转移到另一个协程上，另一个协程可以再 resume 回来，到达`resume_point`。
-	  4. Awaiter.await_resume()的返回值即为 co_await 的结果
-	  
-	  那么问题来了，谁来创建 Awaiter 对象呢？有两种方法：
-	  
-	  1. 通过 Promise 对象的 `await_transform(<expr>)` 方法，得到 Awaiter 对象
-	  2. 通过重载 operator co_await 操作符，得到 Awaiter 对象
-	  3. 直接用 Awaitable 对象
-	  
-	  标准库里面实现了两种 Awaiter，分别如下：
-	  
-	  ```cpp
-	  struct suspend_never {
-	    bool await_ready() const { return true; }
-	    void await_suspend(coroutine_handle<>) const {}
-	    void await_resume() const {}
-	  };
-	  
-	  struct suspend_always {
-	    bool await_ready() const { return false; }
-	    void await_suspend(coroutine_handle<>) const {}
-	    void await_resume() const {}
-	  };
-	  ```
-	  
-	  主要在 `await_ready` 阶段判断是否需要挂起协程。
-	  
-	  最后 `co_yield <expr>` 其实是 co_await 的语法糖，生成如下代码：
-	  
-	  ```cpp
-	  co_await promise.yield_value(expression);
-	  ```
-	  
-	  而 co_return 则会调用 Promise 对象的 return_void/return_value 方法。
+	- bool，若为 true，则返挂起返回 caller，否则不挂起，直接 re
