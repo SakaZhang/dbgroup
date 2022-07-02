@@ -1203,4 +1203,8 @@ C++20 的协程设计为无栈协程，相对于有栈协程，省掉了上下�
     void await_resume() const {}
   };
   ```
--
+- 主要在 `await_ready` 阶段判断是否需要挂起协程。最后 `co_yield <expr>` 其实是 co_await 的语法糖，生成如下代码：
+- ```
+  co_await promise.yield_value(expression);
+  ```
+- 而 co_return 则会调用 Promise 对象的 return_void/return_value 方法。
