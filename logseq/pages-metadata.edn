@@ -22,7 +22,7 @@
  {:block/name "favorites",
   :block/created-at 1655828363136,
   :block/updated-at 1655828363136}
- {:block/name "hello, world!",
+ {:block/name "hello,world!",
   :block/created-at 1655828983743,
   :block/updated-at 1655829022518}
  {:block/name "in-progress",
@@ -31,6 +31,9 @@
  {:block/name "jun 22nd, 2022",
   :block/created-at 1655828973301,
   :block/updated-at 1655828973301}
+ {:block/name "jun 23rd, 2022",
+  :block/created-at 1655993668057,
+  :block/updated-at 1655993668057}
  {:block/name "later",
   :block/created-at 1655828363136,
   :block/updated-at 1655828363136}
